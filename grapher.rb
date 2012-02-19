@@ -38,12 +38,15 @@ end
 commit_dates = []
 dates.each do |date|
   if on?(date)
-    12.times{|i| commit_dates << date.to_time + i*7200}
+    6.times{|i| commit_dates << date.to_time + (i+2)*7200}
   end
 end
 
-puts commit_dates.first
-#commit_dates.each do |date|
-#  `GIT_AUTHOR_DATE="#{date}" GIT_COMMITTER_DATE="#{date}" git commit -m "#{date}" --allow-empty`
-#end
+str_commit_dates = commit_dates.map(&:to_s)
+
+commit_dates.each do |date|
+  puts date
+  File.open('random_list_of_dates', 'w') { |f| f << str_commit_dates.shuffle.first(12).join("\n") }
+  `GIT_AUTHOR_DATE="#{date}" GIT_COMMITTER_DATE="#{date}" git commit -am "#{date}"`
+end
 
