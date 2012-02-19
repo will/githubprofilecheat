@@ -38,7 +38,7 @@ end
 commit_dates = []
 dates.each do |date|
   if on?(date)
-    6.times{|i| commit_dates << date.to_time + (i+2)*7200}
+    22.times{|i| commit_dates << date.to_time + i*3600}
   end
 end
 
