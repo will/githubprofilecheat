@@ -20,7 +20,8 @@ EOF
 
 MASK = PATTERN.split(//).map{|c| c == 'X'}
 
-DAYSTART = Date.new(2015,12,21)
+DAYSTART = Date.new(2017,11,19)
+raise unless DAYSTART.wday == 0 #
 DAYEND   = DAYSTART + (PATTERN.size*4)
 
 
